@@ -30,11 +30,12 @@
 | shipping_area_id    | integer    | null: false |
 | days_to_ship_id     | integer    | null: false |
 | price               | integer    | null: false |
+| user                | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchases
+- has_one :order
 
 ## orders テーブル
 
