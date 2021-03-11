@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column                   | Type   | Options      |
-| ------------------------ | ------ | ------------ |
-| nickname                 | string | null: false  |
-| email                    | string | unique: true |
-| encrypted_password       | string | null: false  |
-| last_name                | string | null: false  |
-| first_name               | string | null: false  |
-| last_name_kana           | string | null: false  |
-| first_name_kana          | string | null: false  |
-| birthday                 | date   | null: false  |
+| Column                   | Type   | Options                  |
+| ------------------------ | ------ | ------------------------ |
+| nickname                 | string | null: false              |
+| email                    | string | unique: true null: false |
+| encrypted_password       | string | null: false              |
+| last_name                | string | null: false              |
+| first_name               | string | null: false              |
+| last_name_kana           | string | null: false              |
+| first_name_kana          | string | null: false              |
+| birthday                 | date   | null: false              |
 
 ### Association
 
@@ -28,7 +28,7 @@
 | status_id           | integer    | null: false |
 | shipping_charge_id  | integer    | null: false |
 | shipping_area_id    | integer    | null: false |
-| Days_to_ship_id     | integer    | null: false |
+| days_to_ship_id     | integer    | null: false |
 | price               | integer    | null: false |
 
 ### Association
@@ -40,14 +40,14 @@
 
 | Column       | Type       | Options           |
 | ------------ | ---------- | ------------------|
-| user_id      | references | foreign_key: true |
-| item_id      | references | foreign_key: true |
+| user         | references | foreign_key: true |
+| item         | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 ##  addresses テーブル
 
@@ -55,11 +55,11 @@
 | ----------------- | ---------- | ----------------- |
 | postal code       | string     | null: false       |
 | shipping_area_id  | integer    | null: false       |
-| municipality_id   | integer    | null: false       |
-| address           | integer    | null: false       |
-| building_name     | integer    |                   |
+| municipality_id   | string     | null: false       |
+| address           | string     | null: false       |
+| building_name     | string     |                   |
 | phone_number      | string     | null: false       |
-| order_id          | references | foreign_key: true |
+| order             | references | foreign_key: true |
 
 ### Association
 
