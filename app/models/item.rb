@@ -30,7 +30,7 @@ class Item < ApplicationRecord
     validates :days_to_ship_id
   end
 
-  validates_inclusion_of :price, in: 300..999999
+  validates_inclusion_of :price, in: 300..9999999
   validates :price, numericality: { with: /\A[0-9]+\z/}
 
 end
