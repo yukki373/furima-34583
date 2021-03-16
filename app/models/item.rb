@@ -1,15 +1,17 @@
 class Item < ApplicationRecord
 
-  validates :image,               presence: true
-  validates :name,                presence: true
-  validates :description,         presence: true
-  validates :category_id,         presence: true
-  validates :status_id,           presence: true
-  validates :shipping_charge_id,  presence: true
-  validates :shipping_area_id,    presence: true
-  validates :days_to_ship_id,     presence: true
-  validates :price,               presence: true
-
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :description
+    validates :category_id
+    validates :status_id
+    validates :shipping_charge_id
+    validates :shipping_area_id
+    validates :days_to_ship_id
+    validates :price
+  end
+  
   belongs_to :user
   has_one_attached :image
 
@@ -17,10 +19,13 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :status
 
-  validates :category_id,          numericality: { other_than: 1 } 
-  validates :status_id,            numericality: { other_than: 1 } 
-  validates :shipping_charge_id,   numericality: { other_than: 1 } 
-  validates :shipping_area_id,     numericality: { other_than: 1 } 
-  validates :days_to_ship_id,      numericality: { other_than: 1 } 
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_charge_id
+    validates :shipping_area_id
+    validates :days_to_ship_id
+  end
 
+  validates_inclusion_of :price, in: 300..999999
 end
