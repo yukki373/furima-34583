@@ -18,6 +18,9 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
+  belongs_to :shipping_charge
+  belongs_to :shipping_area
+  belongs_to :days_to_ship
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -28,4 +31,6 @@ class Item < ApplicationRecord
   end
 
   validates_inclusion_of :price, in: 300..999999
+  validates :price, numericality: { with: /\A[0-9]+\z/}
+
 end
