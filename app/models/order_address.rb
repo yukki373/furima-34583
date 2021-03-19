@@ -9,6 +9,8 @@ class OrderAddress
     validates :address
     validates :phone_number, numericality: { only_integer: true }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   with_options numericality: { other_than: 1 } do
