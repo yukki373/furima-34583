@@ -1,6 +1,5 @@
 <%= render "shared/header" %>
 
-<%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
@@ -23,7 +22,6 @@
       </span>
     </div>
 
-    <%# 購入機能後に付け足す（購入されていたら） %>
     <% if user_signed_in? && @item.order.blank? %>
       <% if @item.user.id == current_user.id %>
         <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
@@ -33,8 +31,6 @@
         <%= link_to "購入画面に進む", item_orders_path(@item.id),class:"item-red-btn"%>
       <% end %>
     <% end %>
-
-    <%# //購入機能後に付け足す %>
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
@@ -78,7 +74,6 @@
       </div>
     </div>
   </div>
-  <%# /商品の概要 %>
 
   <div class="comment-box">
     <form>
