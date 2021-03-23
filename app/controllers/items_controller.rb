@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_action, except: [:index, :new, :create]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   before_action :sold_out,only: [:edit, :update, :destroy]
+  before_action :search_item, only: [:index, :search]
 
   def index
     @items = Item.order("created_at DESC")
@@ -41,6 +42,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = @p.result.includes(:category)  
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :days_to_ship_id, :price, :image).merge(user_id: current_user.id)
@@ -56,5 +61,9 @@ class ItemsController < ApplicationController
 
   def sold_out
     redirect_to root_path if @item.order.present?
+  end
+
+  def search_item
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
   end
 end
