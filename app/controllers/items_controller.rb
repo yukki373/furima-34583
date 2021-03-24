@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_action, except: [:index, :new, :create]
+  before_action :set_action, except: [:index, :new, :create, :search]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   before_action :sold_out,only: [:edit, :update, :destroy]
-  before_action :search_item, only: [:index, :search]
+  before_action :search_item, only: [:index, :search, :show]
 
   def index
     @items = Item.order("created_at DESC")
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = @p.result.includes(:category)  
+    @items = @search.result.order("created_at DESC") 
   end
 
   private
@@ -64,6 +64,6 @@ class ItemsController < ApplicationController
   end
 
   def search_item
-    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+    @search = Item.ransack(params[:q])  # 検索オブジェクトを生成
   end
 end

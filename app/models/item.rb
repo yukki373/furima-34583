@@ -25,7 +25,6 @@ class Item < ApplicationRecord
   belongs_to :days_to_ship
 
   with_options numericality: { other_than: 1 } do
-    validates :status_id
     validates :shipping_charge_id
     validates :shipping_area_id
     validates :days_to_ship_id
