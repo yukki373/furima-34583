@@ -155,3 +155,26 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/* 検索ページ */
+
+.search-items-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.search-back-btn{
+  display: block;
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  padding: 15px 35%;
+  text-decoration: none;
+  text-align: center;
+}
+
+.category-list {
+  width: 200px;
+}
