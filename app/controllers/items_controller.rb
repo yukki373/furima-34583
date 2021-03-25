@@ -43,7 +43,10 @@ class ItemsController < ApplicationController
   end
 
   def search
+
     @items = @search.result
+
+    @items = @search.result.order("created_at DESC") 
   end
  
   private
