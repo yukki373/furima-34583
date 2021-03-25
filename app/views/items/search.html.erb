@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-<div class='search-items'>
-  <h1>
-    検索結果
-  </h1>
-  <div class='search-items-main'>
-  <% if @items.length !=0 %>
-    <% @items.each do |item| %>
-=======
 <div class="item-lists">
 <h1>
   検索結果
@@ -14,19 +5,18 @@
 <% if @items.length !=0 %>
   <% @items.each do |item| %>
     <ul>
->>>>>>> Stashed changes
       <li class='list'>
         <%= link_to item_path(item.id) do %>
+
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
-
           <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <% end %>
-
         </div>
+
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.name %>
@@ -41,9 +31,8 @@
         </div>
         <% end %>
       </li>
-<<<<<<< Updated upstream
-      <% end %>
-    </div>
+    </ul>
+  <% end %>
   <% else %>
     該当する商品はありません
   <% end %>
@@ -51,13 +40,3 @@
 </div>
 
 <%=link_to 'もどる', root_path, class:"search-back-btn" %>
-=======
-    </ul>
-  <% end %>
-<% else %>
-  該当する商品はありません
-<% end %>
-<br>
-<%= link_to 'トップページへ戻る', root_path %>
-</div>
->>>>>>> Stashed changes
