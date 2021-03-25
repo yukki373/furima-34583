@@ -43,9 +43,12 @@ class ItemsController < ApplicationController
   end
 
   def search
+
+    @items = @search.result
+
     @items = @search.result.order("created_at DESC") 
   end
-
+ 
   private
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :days_to_ship_id, :price, :image).merge(user_id: current_user.id)

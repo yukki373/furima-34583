@@ -8,7 +8,6 @@ class OrderAddress
     validates :municipality
     validates :address
     validates :phone_number, numericality: { only_integer: true }
-    validates :token
     validates :user_id
     validates :item_id
   end

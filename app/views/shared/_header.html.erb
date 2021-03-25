@@ -11,12 +11,25 @@
   </div>
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
+      <%= search_form_for @search, url: items_search_path do |f| %>
+        <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: 'カテゴリー'} , class: "category-list" %>
+        <%= f.collection_select :status_id_eq, Status.all, :id, :name, {include_blank: '商品の状態'} , class: "category-list"%>
+        <br>
+        <%= f.label :price, '価格：' %>
+        <%= f.radio_button :price_lteq, '' %>
+        指定なし
+        <%= f.radio_button :price_lteq, '1000' %>
+        1000円以下
+        <%= f.radio_button :price_lteq, '2500' %>
+        2500円以下
+        <%= f.radio_button :price_lteq, '5000' %>
+        5000円以下
+        <%= f.submit '検索' %>
+      <% end %>
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
-      <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
+      <li><%= link_to current_user.nickname, user_path(current_user), class: "user-nickname" %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
       <% else %>
       <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
