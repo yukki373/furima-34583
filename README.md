@@ -17,6 +17,7 @@
 
 - has_many :items
 - has_many :orders
+- has_many :cards
 
 ## items テーブル
 
@@ -65,3 +66,16 @@
 ### Association
 
 - belongs_to :order
+
+## cards テーブル
+
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ------------------|
+| card_token       | string     | null: false       |
+| customer_token   | string     | null: false       |
+| user             | references | foreign_key: true |
+
+
+### Association
+
+- belongs_to :user
